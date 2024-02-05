@@ -1,5 +1,4 @@
 const Customer = require('../models/Customer');
-//const sha1 = require('sha1');
 const jwt = require('jsonwebtoken');
 const formatResponse = require('../helpers/formatResponse');
 const AppError = require('../helpers/AppError');
@@ -8,6 +7,7 @@ const generateJWToken = require('../helpers/generateJWToken');
 
 
 class AuthController {
+    // define signup function
     static async signup(req, res, next) {
         try {
 	    const newCustomer = new Customer({
@@ -32,7 +32,7 @@ class AuthController {
             return next(err);
         }
     }
-
+    // login function implementation
     static async login(req, res, next) {
        const { username, password } = req.body;
         try {
@@ -53,7 +53,7 @@ class AuthController {
               next(error);
           }
     }
-
+    // Handle route protection from unauthorised requests
     static async protect(req, res, next) {
         let token;
         const { authorization } = req.headers;
@@ -89,42 +89,6 @@ class AuthController {
               return next(error);
            }
     } 
-
-    /**static async authenticate(req, res) {
-    let token;
-    const { authorization } = req.headers;
-    if (!authorization) {
-        return res.status(401).json({ message: "You have to provide a token" });
-        }
-    if (authorization.startsWith('Bearer ')) {
-        token = authorization.split(' ')[1];
-        }
-    if (!token) {
-        return res.status(401).json({ active: false });
-        }
-    console.log(`TOKEN ${token}`);
-        try {
-            const decoded = jwt.verify(token, process.env.JWT_SECRET);
-            console.log(`DECODE ${decoded.customerId}`);
-            const CurrentCustomer = await Customer.findOne({
-                _id: decoded.customerId,
-            });
-            if (!CurrentCustomer) {
-                return res.status(401).json({ message: "We could not find a customer with this token" });
-               }
-	    console.log(`CUSTOMER ${CurrentCustomer.username}`);
-
-            return res.status(200).json({
-                customerid: CurrentCustomer._id,
-                username: CurrentCustomer.username
-	    });
-        } catch (error) {
-              if (error.message === 'invalid signature') {
-                  return res.status(401).json({ message: "invalid signature" });
-                 }
-          return res.status(500).json({ active: false });
-          }
-     }**/
 }
 
 module.exports = AuthController;
