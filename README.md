@@ -42,10 +42,10 @@ JWT_EXPIRES_IN="time"
 ```
 
 ## ENDPOINTS
-* Fetch Products:
+### Fetch Products:
 - Method: GET
 - URL: `http://localhost:3000/products`
-* Signup (As a customer):
+### Signup (As a customer):
 - Method: POST
 - URL: `http://localhost:3000/auth/signup`
 - Body (raw JSON);
@@ -56,7 +56,7 @@ JWT_EXPIRES_IN="time"
   "passwordConfirmation": "your_password"
 }
 ```
-* Login (To get JWToken):
+### Login (To get JWToken):
 - Method: POST
 - URL: `http://localhost:3000/auth/login`
 - Body (raw JSON);
@@ -66,7 +66,7 @@ JWT_EXPIRES_IN="time"
   "password": "your_password"
 }
 ```
-* Add Product (Protected)
+### Add Product (Protected)
 - Method: POST
 - URL: `http://localhost:3000/products`
 - Headers:
@@ -79,7 +79,7 @@ JWT_EXPIRES_IN="time"
   "price": Number
 }
 ```
-* Update Product Information (Protected)
+### Update Product Information (Protected)
 - Method: PUT
 - URL: `http://localhost:3000/products/{product_id}`
 - Headers:
