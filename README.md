@@ -18,10 +18,9 @@ A simple shopping cart system built in Node.js that allows the creation and modi
 ## Installation
 
 1. Clone the repository:
-
-   ```bash
-   git clone https://github.com/Hizaram/shopping-cart.git
-  ```
+```bash
+git clone https://github.com/Hizaram/shopping-cart.git
+```
 2. Install dependencies:
 ```bash
 npm install
